@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Scoreboard</title>
+</head>
+
+<style>
+#score {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#score td, #score th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#score tr:nth-child(even){background-color: #f2f2f2;}
+
+#score tr:hover {background-color: #ddd;}
+
+#score th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+
+
+.ctrl {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid #D5DCE6;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 30px;
+}
+
+.ctrl__counter {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  color: #333C48;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ctrl__counter.is-input .ctrl__counter-num {
+  visability: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 100ms ease-in;
+  transition: opacity 100ms ease-in;
+}
+
+.ctrl__counter.is-input .ctrl__counter-input {
+  visability: visible;
+  opacity: 1;
+  -webkit-transition: opacity 100ms ease-in;
+  transition: opacity 100ms ease-in;
+}
+
+.ctrl__counter-input {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  color: #333C48;
+  font-size: 30px;
+  line-height: 100px;
+  text-align: center;
+  visability: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 100ms ease-in;
+  transition: opacity 100ms ease-in;
+}
+
+
+</style>
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+<script type="text/javascript">
+	function reset(){
+		localStorage.setItem("scoreboardthing","Abhi;0.Aaryan;0.Draw;0");
+		load();
+	}
+	function save(){
+		localStorage.setItem("scoreboardthing", "Abhi;"+document.getElementById("e1").value+".Aaryan;"+document.getElementById("e2").value+".Draw;"+document.getElementById("e3").value);
+		console.log("saved");
+	}
+
+	function load(){
+		if(localStorage.getItem("scoreboardthing")==null){
+			reset();
+		}
+		var load = localStorage.getItem("scoreboardthing");
+		var load1 = load.split(".")[0];
+		var load2 = load.split(".")[1];
+		var load3 = load.split(".")[2];
+		var x = load1.split(";");
+		var y = load2.split(";");
+		var z = load3.split(";");
+
+		document.getElementById("p1").innerHTML = x[0];
+		document.getElementById("e1").value = x[1];
+		document.getElementById("p2").innerHTML = y[0];
+		document.getElementById("e2").value = y[1];
+		document.getElementById("p3").innerHTML = z[0];
+		document.getElementById("e3").value = z[1];
+
+	}
+
+</script>
+
+<body onload="load()">
+<div class="container">
+	<div style="text-align: center;">
+		<h1>Scoreboard</h1>
+		<p id="asdf"></p>
+	</div>
+
+	<br>
+	<br>
+	<br>
+
+	<div class="jumbotron" id="heeeee">
+	<table id="score" class="formgroup">
+		<tr>
+			<th id="p1"></th>
+			<th style="text-align: center;">
+				<input onclick="save()" style="background-color: #5a5861; text-align: center; color: #0c0;" type="number" id="e1" value="0" step="1"/>
+			</th>
+		</tr>
+		<tr>
+			<th id="p2"></th>
+			<th style="text-align: center;">
+				<input onclick="save()" style="background-color: #5a5861; text-align: center; color: #0c0;" type="number" id="e2" value="0" step="1"/>
+
+			</th>
+		</tr>
+		<tr>
+			<th id="p3"></th>
+			<th style="text-align: center;">
+				<input onclick="save()" style="background-color: #5a5861; text-align: center; color: #0c0;" type="number" id="e3" value="0" step="1"/>
+
+			</th>
+		</tr>
+	</table>
+
+	</div>
+	<div style="bottom: 0; position: absolute;">
+		<a href="javascript:reset();" class="btn btn-danger">Clear Scores</a>
+		<p>THIS IS STORED ON LOCAL STORAGE, NOT SERVER...</p>
+	</div>
+
+</div>
+</body>
+</html>
